@@ -20,14 +20,14 @@ namespace AlgoritmosFinalOK
 			int n;
 			Console.WriteLine("Cantidad de películas:");
 			EscribeYLeeInt("Cantidad de películas:", "ERROR: TU CANTIDAD NO PUEDE SER NEGATIVA Y DEBE SER UN NÚMERO.", out n, 0, int.MaxValue);
-			DatosPelicula[] datosPeliculas = new DatosPelicula[n]; // CAMBIAR ESTO PARA LLENAR COMO QUIERA EL USUARIO Y DEFINIR TAMAÑO
+			DatosPelicula[] datosPeliculas = new DatosPelicula[n];
 
 			DatosCartelera(datosPeliculas);
 
 			MuestraResultados(datosPeliculas);
 		}
 
-		// FASE 1
+		// ===== FASE 1 =====
 		static void DatosCartelera(DatosPelicula[] lista)
 		{
 			for (int i = 0; i < lista.Length; i++)
@@ -41,26 +41,60 @@ namespace AlgoritmosFinalOK
 
 		}
 
-		// FASE 2
+		// ===== FASE 2 =====
+		static void ventas(DatosPelicula[] listas)
+		{
+			int cant, peliculas;
+			double tot = 0, max = -1, min = 10000;
+			for (int i = 0; i < listas.Length; i++)
+			{
+				Console.WriteLine();
+				EscribeYLeeInt("¿Cuántas peliculas son?", 
+					"ERROR: La cantidad de películas debe ser mayor a cero y un número", 
+					out peliculas, 1, int.MaxValue);
 
+				Console.WriteLine();
 
-		// FASE 3
+				EscribeYLeeInt("¿Cuantos boletos fueron vendidos a menores?", 
+					"ERROR: La cantidad de boletos debe ser no negativa y un número", 
+					out listas[i].boletosVendidosMenores, 0, int.MaxValue);
+
+				Console.WriteLine();
+
+				EscribeYLeeInt("¿Cuantos boletos fueron vendidos a adultos?", 
+					"ERROR: La cantidad de boletos debe ser no negativa y un número", 
+					out listas[i].boletosVendidosAdulto, 0, int.MaxValue);
+
+				for (int cont = 0; cont < peliculas; cont++)
+				{
+					Console.WriteLine();
+					EscribeYLeeInt("¿Cuántos boletos se vendieron en la pelicula" + listas[i].nombre + "?", 
+						"ERROR: La cantidad de boletos debe ser no negativa y un número", out cant, 0, int.MaxValue);
+				}
+				Console.WriteLine("La pelicula con menor ventas fue la de: " + listas[i].nombre + "con la cantidad de " + min + "boletos");
+				Console.WriteLine("La pelicula con mayor ventas fue la de: " + listas[i].nombre + "con la cantidad de " + max + "boletos");
+				tot = listas[i].boletosVendidosAdulto + listas[i].boletosVendidosMenores;
+				Console.WriteLine("El total de boletos vendidos en todas las peliculas fue de " + tot);
+			}
+		}
+
+		// ===== FASE 3 =====
 		static void MuestraResultados(DatosPelicula[] tabla)
 		{
 			string menuReporte = @"ESCRIBE EL NÚMERO DE LA OPCIÓN DESEADA
 	1)	Mostrar ventas en de todas las peliculas como tabla
 	2)	Mostrar datos de una sóla película
 	3)	Mostrar datos de las peliculas que contengan en su título un texto
-	3)	Mostrar película con más boletos vendidos
-	4)	Mostrar película con menos boletos vendidos
-	5)	Mostrar película con mayores recaudaciones (tras descuentos)
-	6)	Mostrar película con menores recaudaciones (tras descuentos)
-	7)	Mostrar cantidad de boletos vendidos a menores
-	8)	Mostrar cantidad de boletos vendidos a adultos
-	9)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
-	10)	Mostrar película con la mayor cantidad de dinero descontado
-	11)	Mostrar película con la menor cantidad de dinero descontado
-	12)	Salir";
+	4)	Mostrar película con más boletos vendidos
+	5)	Mostrar película con menos boletos vendidos
+	6)	Mostrar película con mayores recaudaciones (tras descuentos)
+	7)	Mostrar película con menores recaudaciones (tras descuentos)
+	8)	Mostrar cantidad de boletos vendidos a menores
+	9)	Mostrar cantidad de boletos vendidos a adultos
+	10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
+	11)	Mostrar película con la mayor cantidad de dinero descontado
+	12)	Mostrar película con la menor cantidad de dinero descontado
+	13)	Salir";
 
 			int opcion;
 
@@ -71,30 +105,31 @@ namespace AlgoritmosFinalOK
 				switch (opcion)
 				{
 					case 1: // 1)	Mostrar ventas en de todas las peliculas como tabla
+						EscribeTablaPeliculas(tabla);
 						break;
 					case 2: // 2)	Mostrar datos de una sóla película
 						break;
-					case 3: // 2)	Mostrar datos de las peliculas que contengan en su título un texto
+					case 3: // 3)	Mostrar datos de las peliculas que contengan en su título un texto
 						break;
-					case 4: // 3)	Mostrar película con más boletos vendidos
+					case 4: // 4)	Mostrar película con más boletos vendidos
 						break;
-					case 5: // 4)	Mostrar película con menos boletos vendidos
+					case 5: // 5)	Mostrar película con menos boletos vendidos
 						break;
-					case 6: // 5)	Mostrar película con mayores recaudaciones (tras descuentos)
+					case 6: // 6)	Mostrar película con mayores recaudaciones (tras descuentos)
 						break;
-					case 7: // 6)	Mostrar película con menores recaudaciones (tras descuentos)
+					case 7: // 7)	Mostrar película con menores recaudaciones (tras descuentos)
 						break;
-					case 8: // 7)	Mostrar cantidad de boletos vendidos a menores
+					case 8: // 8)	Mostrar cantidad de boletos vendidos a menores
 						break;
-					case 9: // 8)	Mostrar cantidad de boletos vendidos a adultos
+					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos
 						break;
-					case 10: // 9)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
+					case 10: // 10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
 						break;
-					case 11: // 10)	Mostrar película con la mayor cantidad de dinero descontado
+					case 11: // 11)	Mostrar película con la mayor cantidad de dinero descontado
 						break;
-					case 12: // 11)	Mostrar película con la menor cantidad de dinero descontado
+					case 12: // 12)	Mostrar película con la menor cantidad de dinero descontado
 						break;
-					case 13: // 12)	Salir
+					case 13: // 13)	Salir
 						return;
 					default:
 						break;
@@ -104,13 +139,37 @@ namespace AlgoritmosFinalOK
 
 		}
 
-		static string TablaResultados()
+		// UTILIDADES FASE 3
+		static void EscribeTablaPeliculas(DatosPelicula[] peliculas)
         {
-
+			for(int i = 0; i < peliculas.Length; i++)
+            {
+				EscribeDatosPelicula(peliculas[i], i == 0);
+			}
         }
 
+		static void EscribeDatosPelicula(DatosPelicula pelicula, bool encabezado)
+        {
+            if (encabezado)
+				Console.WriteLine("\t\tPelícula\t\tCosto Adulto\t\tCosto Menor\t\tBoletos Adulto\t\tBoletos Menores\t\tDescontado");
 
-		// UTILIDADES
+			Console.WriteLine(ResultadosPelicula(pelicula));
+		}
+
+		static string ResultadosPelicula(DatosPelicula pelicula)
+        {
+			string fila = "\t\t" + pelicula.nombre;
+			fila += "\t\t$" + pelicula.costoAdulto;
+			fila += "\t\t$" + pelicula.costoMenores;
+			fila += "\t\t" + pelicula.boletosVendidosAdulto;
+			fila += "\t\t" + pelicula.boletosVendidosMenores;
+			fila += "\t\t$" + pelicula.dineroDescontado;
+
+			return fila;
+		}
+
+
+		// ===== UTILIDADES =====
 		static void EscribeYLeeInt(string textoPedir, string textoError, out int resultado, int resultadoMayorIgualQue, int resultadoMenorIgualQue)
 		{
 			bool continuar = true;
