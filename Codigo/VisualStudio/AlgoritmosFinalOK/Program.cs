@@ -143,6 +143,7 @@ namespace AlgoritmosFinalOK
 					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos // Uribe
 						break;
 					case 10: // 10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta // Romero
+						CobroDescuentosGanancia(tabla);
 						break;
 					case 11: // 11)	Mostrar película con la mayor cantidad de dinero descontado // Romero
 						break;
@@ -159,6 +160,7 @@ namespace AlgoritmosFinalOK
 		}
 
 		// FUNCIONES FASE 3
+		//case 1
 		static void EscribeTablaPeliculas(DatosPelicula[] peliculas)
 		{
 			for (int i = 0; i < peliculas.Length; i++)
@@ -167,6 +169,7 @@ namespace AlgoritmosFinalOK
 			}
 		}
 
+		//case 2
 		static void BuscaPeliculaNombreExacto(DatosPelicula[] peliculas)
         {
 			string nombre;
@@ -191,6 +194,7 @@ namespace AlgoritmosFinalOK
 				EscribeDatosPelicula(pelicula, true);
         }
 
+		//case 3
 		static void BuscaPeliculaQueContenganTexto(DatosPelicula[] peliculas)
 		{
 			string texto;
@@ -219,6 +223,27 @@ namespace AlgoritmosFinalOK
 				}
             }
 		}
+
+		//case 10
+		static void CobroDescuentosGanancia(DatosPelicula[] peliculas)
+        {
+			double cobroTotal = 0, descuentosTotales = 0, gananciaNeta;
+
+			for(int i = 0; i < peliculas.Length; i++)
+            {
+				cobroTotal += (peliculas[i].costoAdulto * peliculas[i].boletosVendidosAdulto) 
+					+ (peliculas[i].costoMenores * peliculas[i].boletosVendidosMenores);
+
+				descuentosTotales += peliculas[i].dineroDescontado;
+			}
+
+			gananciaNeta = cobroTotal - descuentosTotales;
+
+			Console.WriteLine("Cobro total (no tomando descuentos en cuenta): $" + cobroTotal);
+			Console.WriteLine("Dinero aplicado en descuentos: $" + descuentosTotales);
+			Console.WriteLine("Ganancia neta: $" + gananciaNeta);
+        }
+
 
 		// UTILIDADES FASE 3
 		static void EscribeDatosPelicula(DatosPelicula pelicula, bool encabezado)
