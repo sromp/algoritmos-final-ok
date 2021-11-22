@@ -11,7 +11,7 @@ Datos necesarios:
  
 Lo que se realizara en la función
 
-En esta función se realizara el llenado de ventas de boletos a personas menores y a adultos, realizar el descuento que se aplicará al comprar mas de 3 boletos del 30%, la película con mayor ventas, la película con menor ventas
+En esta función se realizara el llenado de ventas de boletos a personas menores y a adultos, al comprar mas de 3 boletos y que uno sea para un menor se le aplicara el 30% de descuento al boleto del menor, la película con mayor ventas, la película con menor ventas
 
 		struct datosPelicula
 		{
