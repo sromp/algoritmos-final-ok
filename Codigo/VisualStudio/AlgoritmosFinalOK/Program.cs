@@ -17,9 +17,25 @@ namespace AlgoritmosFinalOK
 
 		static void Main(string[] args)
 		{
-			DatosPelicula[] datosPeliculasPorMes;
+			DatosPelicula[] datosPeliculas = new DatosPelicula[1]; // CAMBIAR ESTO PARA LLENAR COMO QUIERA EL USUARIO Y DEFINIR TAMAÑO
+
+			DatosCartelera(datosPeliculas);
+
 
 			Console.WriteLine("Hello World!");
+		}
+
+		static void DatosCartelera(DatosPelicula[] lista)
+		{
+			for (int i = 0; i < lista.Length; i++)
+			{
+				Console.WriteLine("Nombre de la película " + (i + 1) + ":");
+				lista[i].nombre = Console.ReadLine();
+				EscribeYLeeDouble("Costo boleto de adulto para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoAdulto, 0, double.MaxValue);
+				EscribeYLeeDouble("Costo boleto de menores para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoMenores, 0, double.MaxValue);
+			}
+
+
 		}
 
 		
