@@ -37,62 +37,119 @@ namespace AlgoritmosFinalOK
 		{
 			for (int i = 0; i < lista.Length; i++)
 			{
-				Console.WriteLine("Nombre de la película " + (i + 1) + ":");
-				lista[i].nombre = Console.ReadLine();
-				EscribeYLeeDouble("Costo boleto de adulto para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoAdulto, 0, double.MaxValue);
-				EscribeYLeeDouble("Costo boleto de menores para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoMenores, 0, double.MaxValue);
+				lista[i].nombre = ValidacionNombrePelicula("Escribe el nombre de la película " + (i + 1) + ":", lista, i);
+				EscribeYLeeDouble("Escribe el costo boleto de adulto para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoAdulto, 0, double.MaxValue);
+				EscribeYLeeDouble("Escribe el costo boleto de menores para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoMenores, 0, double.MaxValue);
+				lista[i].boletosVendidosAdulto = 0;
+				lista[i].boletosVendidosMenores = 0;
+				lista[i].dineroDescontado = 0;
 			}
 
 
 		}
 
+		// UTILIDADES FASE 1
+		static string ValidacionNombrePelicula(string mensaje, DatosPelicula[] peliculas, int indice)
+        {
+			string nombre;
+			bool nombreValido;
+
+			do
+            {
+				nombreValido = true;
+
+				Console.WriteLine(mensaje);
+
+				nombre = Console.ReadLine();
+
+				if (nombre.Replace(" ", "") == "")
+				{
+					Console.WriteLine("ERROR: El nombre de la película no puede quedar en blanco");
+					nombreValido = false;
+					continue;
+				}
+
+				for (int i = 0; i < indice; i++)
+				{
+					if (nombre.ToLower().Replace(" ", "") == peliculas[i].nombre.ToLower().Replace(" ", ""))
+					{
+						Console.WriteLine("ERROR: El nombre de la película no puede repetirse exactamente, de ser una versión distinta se debe diferenciar en el nombre");
+						nombreValido = false;
+						continue;
+					}
+				}
+
+			} while(!nombreValido);
+
+			return nombre;
+			
+        }
+
 		// ===== FASE 2 =====
 		static void Ventas(DatosPelicula[] listas)
 		{
-			int cant, peliculas, clientes, boletos;
-			double tot = 0, max = -1, min = 10000;
-			for (int i = 0; i < listas.Length; i++)
+			int clientes;
+			Console.WriteLine("¿Cuantos clientes son?");
+
+			EscribeYLeeInt("¿Cuantos clientes son?", 
+				"ERROR: Debe de haber por lo menos un cliente y debe ser un número", 
+				out clientes, 1, int.MaxValue);
+			
+			for (int j = 0; j < clientes; j++)
 			{
-				Console.WriteLine();
-				EscribeYLeeInt("¿Cuántas peliculas son?", 
-					"ERROR: La cantidad de películas debe ser mayor a cero y un número", 
-					out peliculas, 1, int.MaxValue);
+				int boletosAdulto, boletosMenores, indicePelicula;
+				double ventaAdulto, ventaMenor;
 
-				Console.WriteLine();
+				indicePelicula = IndicePeliculaPorNombre(listas, "Escribe el nombre de la película que va ver el cliente [" + (j+1) + "]");
 
-				EscribeYLeeInt("¿Cuantos boletos fueron vendidos a menores?", 
-					"ERROR: La cantidad de boletos debe ser no negativa y un número", 
-					out listas[i].boletosVendidosMenores, 0, int.MaxValue);
+				EscribeYLeeInt("¿Cuantos boletos de adulto va a comprar el cliente [" + (j + 1) + "]?",
+					"ERROR: La cantidad de boletos no puede ser negativa y debe ser un número", 
+					out boletosAdulto, 0, int.MaxValue);
 
-				Console.WriteLine();
+				EscribeYLeeInt("¿Cuantos boletos de menor va a comprar el cliente [" + (j + 1) + "]?",
+					"ERROR: La cantidad de boletos no puede ser negativa y debe ser un número",
+					out boletosMenores, 0, int.MaxValue);
 
-				EscribeYLeeInt("¿Cuantos boletos fueron vendidos a adultos?", 
-					"ERROR: La cantidad de boletos debe ser no negativa y un número", 
-					out listas[i].boletosVendidosAdulto, 0, int.MaxValue);
+				ventaAdulto = listas[indicePelicula].costoAdulto * boletosAdulto;
+				ventaMenor = listas[indicePelicula].costoMenores * boletosMenores;
 
-				for (int cont = 0; cont < peliculas; cont++)
+				listas[indicePelicula].boletosVendidosAdulto += boletosAdulto;
+				listas[indicePelicula].boletosVendidosMenores += boletosMenores;
+
+				if (boletosAdulto + boletosMenores >= 3 && boletosMenores >= 1)
+					listas[indicePelicula].dineroDescontado += ventaAdulto + (ventaMenor * 0.70);
+                else
+					listas[indicePelicula].dineroDescontado += ventaAdulto + ventaMenor;
+			}
+		}
+
+		// UTILIDADES FASE 2
+		static int IndicePeliculaPorNombre(DatosPelicula[] peliculas, string mensaje)
+        {
+			string nombre;
+			int indiceEncontrado = -1; // -1 es el valor asignado si no se encuentra nada
+			bool encontrado = false;
+
+            do
+            {
+				Console.WriteLine("\n" + mensaje);
+				nombre = Console.ReadLine();
+
+				for (int i = 0; i < peliculas.Length; i++)
 				{
-					Console.WriteLine();
-					EscribeYLeeInt("¿Cuántos boletos se vendieron en la pelicula" + listas[i].nombre + "?", 
-						"ERROR: La cantidad de boletos debe ser no negativa y un número", out cant, 0, int.MaxValue);
-				}
-				Console.WriteLine("La pelicula con menor ventas fue la de: " + listas[i].nombre + "con la cantidad de " + min + "boletos");
-				Console.WriteLine("La pelicula con mayor ventas fue la de: " + listas[i].nombre + "con la cantidad de " + max + "boletos");
-				tot = listas[i].boletosVendidosAdulto + listas[i].boletosVendidosMenores;
-				Console.WriteLine("El total de boletos vendidos en todas las peliculas fue de " + tot);
-
-				Console.WriteLine("¿Cuantos clientes son?");
-				clientes = int.Parse(Console.ReadLine());
-				for (int j = 0; j < clientes; j++)
-				{
-					Console.WriteLine("¿Cuantos boletos va a comprar el cliente" + j + 1 + "?");
-					boletos = int.Parse(Console.ReadLine());
-					if (boletos >= 3)
+					if (peliculas[i].nombre.ToLower().Replace(" ", "") == nombre.ToLower().Replace(" ", ""))
 					{
-						listas[i].dineroDescontado = listas[i].costoMenores - (listas[i].costoMenores * 0.30);
+						indiceEncontrado = i;
 					}
 				}
-			}
+
+				if (indiceEncontrado == -1)
+					Console.WriteLine("No se encontró esa película");
+				else
+					encontrado = true;
+			} while(!encontrado);
+
+			return indiceEncontrado;
 		}
 
 		// ===== FASE 3 =====

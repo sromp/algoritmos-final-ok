@@ -1,0 +1,18 @@
+------------------------TEST 1
+>>Fase 1
+> añadir validación para evitar más de una película con el mismo nombre
+> añadir validación para texto vacío
+
+>>Fase 2
+> vuelve a preguntar cantidad de películas (ya existe la tabla para eso)
+> falta espacio en pregunta "¿Cuántos boletos se vendieron en la pelicula" + $var$
+> se repite "¿Cuántos boletos se vendieron en la pelicula" + $var$
+> linea 76 deberia decir listas[cont].nombre en vez de listas[i].nombre
+> linea 77 deberia decir listas[cont].nombre en vez de listas[i].nombre
+> no debe pedir cantidad de boletos total antes de preguntar por cantidad de boletos por película
+> revisar reporte de resultados duplicados
+> sólo preguntar compra de clientes y no totales de boletos por película; más bien obtener la cantidad de boletos de las películas a partir de las compras de los clientes
+> texto dice "¿Cuantos boletos va a comprar el cliente01?" y "¿Cuantos boletos va a comprar el cliente11?"
+> no necesitamos repetir el preguntar datos varias veces
+
+------------------------TEST 2
