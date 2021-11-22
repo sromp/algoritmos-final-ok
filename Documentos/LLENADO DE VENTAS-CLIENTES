@@ -12,3 +12,27 @@ Datos necesarios:
 Lo que se realizara en la función
 
 En esta función se realizara el llenado de ventas de boletos a personas menores y a adultos, realizar el descuento que se aplicará al comprar mas de 3 boletos del 30%, la película con mayor ventas, la película con menor ventas
+
+		static void ventas(DatosPelicula[] listas)
+        {
+			int cant, peliculas;
+			double tot = 0, max = -1, min= 10000 ;
+			for (int i = 0; i < listas.Length; i++)
+			{
+				Console.WriteLine("¿Cuántas peliculas son?");
+				peliculas = int.Parse(Console.ReadLine());
+				Console.WriteLine("¿Cuantos boletos fueron vendidos a menores?");
+				listas[i].boletosVendidosMenores = int.Parse(Console.ReadLine());
+				Console.WriteLine("¿Cuantos boletos fueron vendidos a mayores?");
+				listas[i].boletosVendidosAdulto = int.Parse(Console.ReadLine());
+				for (int cont = 0; cont < peliculas; cont++)
+				{
+					Console.WriteLine("¿Cuántos boletos se vendieron en la pelicula" + listas[i].nombre + "?");
+					cant = int.Parse(Console.ReadLine());
+				}
+				Console.WriteLine("La pelicula con menor ventas fue la de: " + listas[i].nombre + "con la cantidad de " + min + "boletos");
+				Console.WriteLine("La pelicula con mayor ventas fue la de: " + listas[i].nombre + "con la cantidad de " + max + "boletos");
+				tot = listas[i].boletosVendidosAdulto + listas[i].boletosVendidosMenores;
+				Console.WriteLine("El total de boletos vendidos en todas las peliculas fue de " + tot);
+			}
+        }
