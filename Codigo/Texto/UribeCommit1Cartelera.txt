@@ -32,3 +32,16 @@ AGREGUÉ LA CANTIDAD DE PELÍCULAS EN EL Main Y LE ASIGNÉ LA VARIABLE n
 
 			DatosCartelera(datosPeliculas);
 		}
+----------------------------------------------------------------------------------
+QUITÉ EL PRIMER WriteLine DE "Cant. de peli." 
+
+static void Main(string[] args)
+		{
+			int n;
+			EscribeYLeeInt("Cantidad de películas:", "ERROR: TU CANTIDAD NO PUEDE SER NEGATIVA Y DEBE SER UN NÚMERO.", out n, 0, int.MaxValue);
+			DatosPelicula[] datosPeliculas = new DatosPelicula[n]; // CAMBIAR ESTO PARA LLENAR COMO QUIERA EL USUARIO Y DEFINIR TAMAÑO
+
+			DatosCartelera(datosPeliculas);
+
+			MuestraResultados(datosPeliculas);
+		}
