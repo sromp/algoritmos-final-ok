@@ -21,8 +21,7 @@ namespace AlgoritmosFinalOK
 
 			DatosCartelera(datosPeliculas);
 
-
-			Console.WriteLine("Hello World!");
+			MuestraResultados(datosPeliculas);
 		}
 
 		static void DatosCartelera(DatosPelicula[] lista)
@@ -38,7 +37,61 @@ namespace AlgoritmosFinalOK
 
 		}
 
-		
+		static void MuestraResultados(DatosPelicula[] tabla)
+		{
+			string opciones = @"ESCRIBE EL NÚMERO DE LA OPCIÓN DESEADA
+	1)	Mostrar ventas en de todas las peliculas como tabla
+	2)	Mostrar datos de una sóla película
+	3)	Mostrar película con más boletos vendidos
+	4)	Mostrar película con menos boletos vendidos
+	5)	Mostrar película con mayores recaudaciones (tras descuentos)
+	6)	Mostrar película con menores recaudaciones (tras descuentos)
+	7)	Mostrar cantidad de boletos vendidos a menores
+	8)	Mostrar cantidad de boletos vendidos a adultos
+	9)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
+	10)	Mostrar película con la mayor cantidad de dinero descontado
+	11)	Mostrar película con la menor cantidad de dinero descontado
+	12)	Salir";
+
+			int opcion;
+
+			do
+			{
+				EscribeYLeeInt(opciones, "ERROR: Esa no es una opción válida", out opcion, 1, 12);
+
+				switch (opcion)
+				{
+					case 1:
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+					case 5:
+						break;
+					case 6:
+						break;
+					case 7:
+						break;
+					case 8:
+						break;
+					case 9:
+						break;
+					case 10:
+						break;
+					case 11:
+						break;
+					case 12:
+						break;
+					default:
+						break;
+				}
+
+			} while(opcion != 12);
+
+		}
 
 		static void EscribeYLeeInt(string textoPedir, string textoError, out int resultado, int resultadoMayorIgualQue, int resultadoMenorIgualQue)
 		{
