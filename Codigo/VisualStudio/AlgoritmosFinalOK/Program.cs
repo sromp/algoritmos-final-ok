@@ -150,7 +150,7 @@ namespace AlgoritmosFinalOK
 						Console.WriteLine("Se vendieron " + BoletosAdultos(tabla) + " boletos a adultos");
 						break;
 					case 10: // 10) Mostrar la cantidad de boletos vendidos
-						Console.WriteLine("Se vendieron " + BoletosTotales(tabla) + " boletos en total";
+						Console.WriteLine("Se vendieron " + BoletosTotales(tabla) + " boletos en total");
 						break;
 					case 11: // 11)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta // Romero
 						CobroDescuentosGanancia(tabla);
