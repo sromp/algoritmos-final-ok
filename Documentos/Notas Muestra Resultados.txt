@@ -1,0 +1,21 @@
+FASE 3. MUESTRA DE RESULTADOS
+
+Datos necesarios:
+	Datos de películas (estructura) por mes (arreglo dos dimensiones)
+
+Puede hacer:
+	Mostrar menu a usuario de que tipos de resultados quiere ver:
+
+	1)	Mostrar ventas en todos los meses de todas las peliculas como tabla
+	2)	Mostrar película con menos ventas
+	3)	Mostrar película con mayores ventas
+	4)	Mostrar datos de una sóla película
+	5) 	Mostrar datos de una sóla película de un sólo mes
+	6)	Mostrar boletos de menores totales
+	7)	Mostrar boletos de adultos totales
+	8)	Mostrar cobro total, descuentos totales y ganancia neta
+	9)	Mostrar película con mayor descuentos
+	10)	Mostrar película con menores descuentos
+	11)	Mostrar película con mayores recaudaciones
+	12)	Mostrar película con menores recaudaciones
+	13)	Salir
