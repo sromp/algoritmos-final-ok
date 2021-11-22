@@ -119,8 +119,10 @@ namespace AlgoritmosFinalOK
 						EscribeTablaPeliculas(tabla);
 						break;
 					case 2: // 2)	Mostrar datos de una sóla película // Romero
+						BuscaPeliculaNombreExacto(tabla);
 						break;
 					case 3: // 3)	Mostrar datos de las peliculas que contengan en su título un texto // Romero
+						BuscaPeliculaQueContenganTexto(tabla);
 						break;
 					case 4: // 4)	Mostrar película con más boletos vendidos // Uribe
 						break;
@@ -150,15 +152,69 @@ namespace AlgoritmosFinalOK
 
 		}
 
-		// UTILIDADES FASE 3
+		// FUNCIONES FASE 3
 		static void EscribeTablaPeliculas(DatosPelicula[] peliculas)
-        {
-			for(int i = 0; i < peliculas.Length; i++)
-            {
+		{
+			for (int i = 0; i < peliculas.Length; i++)
+			{
 				EscribeDatosPelicula(peliculas[i], i == 0);
 			}
+		}
+
+		static void BuscaPeliculaNombreExacto(DatosPelicula[] peliculas)
+        {
+			string nombre;
+			DatosPelicula pelicula = peliculas[0]; // Asignado a cero para evitar error de valor no asignado
+			bool encontrado = false;
+
+			Console.WriteLine("\nEscribe el nombre de la película");
+			nombre = Console.ReadLine();
+
+			for(int i = 0; i < peliculas.Length; i++)
+            {
+				if(peliculas[i].nombre.ToLower().Replace(" ", "") == nombre.ToLower().Replace(" ", ""))
+                {
+					pelicula = peliculas[i];
+					encontrado = true;
+				}
+            }
+
+			if(!encontrado)
+				Console.WriteLine("No se encontró esa película");
+			else
+				EscribeDatosPelicula(pelicula, true);
         }
 
+		static void BuscaPeliculaQueContenganTexto(DatosPelicula[] peliculas)
+		{
+			string texto;
+			DatosPelicula[] peliculasEncontradas = new DatosPelicula[peliculas.Length];
+			int encontrados = 0;
+			
+			Console.WriteLine("\nEscribe el texto que debe contener el nombre de la película");
+			texto = Console.ReadLine().ToLower().Replace(" ", "");
+
+			for (int i = 0; i < peliculas.Length; i++)
+			{
+				if (peliculas[i].nombre.ToLower().Replace(" ", "").Contains(texto))
+				{
+					peliculasEncontradas[encontrados] = peliculas[i];
+					encontrados++;
+				}
+			}
+
+			if (encontrados == 0)
+				Console.WriteLine("No se encontró película que contenga ese texto");
+			else
+            {
+				for(int i = 0; i < encontrados; i++)
+                {
+					EscribeDatosPelicula(peliculasEncontradas[i], i == 0);
+				}
+            }
+		}
+
+		// UTILIDADES FASE 3
 		static void EscribeDatosPelicula(DatosPelicula pelicula, bool encabezado)
         {
             if (encabezado)
