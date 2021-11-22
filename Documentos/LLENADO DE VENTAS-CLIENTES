@@ -1,3 +1,14 @@
 Llenado de ventas/ clientes
 
-En esta función se realizara el llenado de ventas de boletos a personas menores y a adultos, realizar el descuento que se aplicará al comprar mas de 3 boletos
+Datos necesarios:
+- Nombre de la película
+- Costo de boletos de menores
+- Ventas de boletos a menores
+- Costo de boletos de mayores
+- Ventas de boletos a mayores
+- Cantidades de boletos comprados
+- Descuento
+ 
+Lo que se realizara en la función
+
+En esta función se realizara el llenado de ventas de boletos a personas menores y a adultos, realizar el descuento que se aplicará al comprar mas de 3 boletos del 30%, la película con mayor ventas, la película con menor ventas
