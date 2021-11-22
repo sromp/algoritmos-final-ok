@@ -144,12 +144,13 @@ namespace AlgoritmosFinalOK
 						EscribeDatosPelicula(PeliculaMenosRecaudaciones(tabla), true);
 						break;
 					case 8: // 8)	Mostrar cantidad de boletos vendidos a menores // Uribe
-						EscribeDatosPelicula(BoletosMenores(tabla), true);
+						Console.WriteLine("Se vendieron " + BoletosMenores(tabla) + " boletos a menores");
 						break;
 					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos // Uribe
-						EscribeDatosPelicula(BoletosAdultos(tabla), true);
+						Console.WriteLine("Se vendieron " + BoletosAdultos(tabla) + " boletos a adultos");
 						break;
 					case 10: // 10) Mostrar la cantidad de boletos vendidos
+						Console.WriteLine("Se vendieron " + BoletosTotales(tabla) + " boletos en total";
 						break;
 					case 11: // 11)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta // Romero
 						CobroDescuentosGanancia(tabla);
@@ -306,27 +307,31 @@ namespace AlgoritmosFinalOK
 		}
 
 		//case 8
-		static DatosPelicula BoletosMenores(DatosPelicula[] lista)
+		static int BoletosMenores(DatosPelicula[] lista)
 		{
 			int total = 0;
-			DatosPelicula DatosPelicula = lista[0];
 			for (int i = 0; i < lista.Length; i++)
 			{
 				total = total + lista[i].boletosVendidosMenores;
 			}
-			return DatosPelicula;
+			return total;
 		}
 
 		//case 9
-		static DatosPelicula BoletosAdultos(DatosPelicula[] lista)
+		static int BoletosAdultos(DatosPelicula[] lista)
 		{
 			int total = 0;
-			DatosPelicula DatosPelicula = lista[0];
 			for (int i = 0; i < lista.Length; i++)
 			{
 				total = total + lista[i].boletosVendidosAdulto;
 			}
-			return DatosPelicula;
+			return total;
+		}
+
+		//case 10
+		static int BoletosTotales(DatosPelicula[] lista)
+        {
+			return BoletosAdultos(lista) + BoletosMenores(lista);
 		}
 
 		//case 11
