@@ -37,3 +37,14 @@
 
 ------------------------TEST 3
 
+>>Fase 2
+>decir que la venta menores es sin descuento en la tabla
+>>Fase 3
+>poner signo de dolar en costos de tabla
+
+-----------------------TEST 4
+>descuento esta siendo calculado mal
+>la tabla no muestra ganancias y demás
+
+----------------------TEST 5
+

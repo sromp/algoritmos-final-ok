@@ -38,8 +38,8 @@ namespace AlgoritmosFinalOK
 			for (int i = 0; i < lista.Length; i++)
 			{
 				lista[i].nombre = ValidacionNombrePelicula("Escribe el nombre de la película " + (i + 1) + ":", lista, i);
-				EscribeYLeeDouble("Escribe el costo boleto de adulto para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoAdulto, 0, double.MaxValue);
-				EscribeYLeeDouble("Escribe el costo boleto de menores para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoMenores, 0, double.MaxValue);
+				EscribeYLeeDouble("Escribe el costo del boleto de adulto para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoAdulto, 0, double.MaxValue);
+				EscribeYLeeDouble("Escribe el costo del boleto de menores para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoMenores, 0, double.MaxValue);
 				lista[i].boletosVendidosAdulto = 0;
 				lista[i].boletosVendidosMenores = 0;
 				lista[i].dineroDescontado = 0;
@@ -112,20 +112,19 @@ namespace AlgoritmosFinalOK
 				ventaAdulto = listas[indicePelicula].costoAdulto * boletosAdulto;
 				ventaMenor = listas[indicePelicula].costoMenores * boletosMenores;
 
-				listas[indicePelicula].boletosVendidosAdulto += boletosAdulto;
-				listas[indicePelicula].boletosVendidosMenores += boletosMenores;
-
 				if (boletosAdulto + boletosMenores >= 3 && boletosMenores >= 1)
-					descontado = ventaAdulto + (ventaMenor * 0.70);
+					descontado = ventaMenor * 0.30;
 				else
-					descontado = ventaAdulto + ventaMenor;
+					descontado = 0;
 
 				listas[indicePelicula].dineroDescontado += descontado;
+				listas[indicePelicula].boletosVendidosAdulto += boletosAdulto;
+				listas[indicePelicula].boletosVendidosMenores += boletosMenores;
 
 				Console.WriteLine("\nDESGLOSE CLIENTE: ");
 				Console.WriteLine("Boletos menores: " + boletosMenores);
 				Console.WriteLine("Boletos adultos: " + boletosAdulto);
-				Console.WriteLine("Venta menores: $" + ventaMenor);
+				Console.WriteLine("Venta menores (sin contar descuento): $" + ventaMenor);
 				Console.WriteLine("Venta adultos: $" + ventaAdulto);
 				Console.WriteLine("Venta total: $" + (ventaAdulto + ventaMenor));
 				Console.WriteLine("Descontado: $" + descontado);
@@ -454,29 +453,31 @@ namespace AlgoritmosFinalOK
 		static void EscribeDatosPelicula(DatosPelicula pelicula, bool encabezado)
 		{
 			if (encabezado)
-				Console.WriteLine(FormatearFilaTabla("Nombre de la película", "Costo Adulto", "Costo Menor", "Boletos Adulto", "Boletos Menores", "Recaudado Adulto", "Recaudado Menor", "Recaudado Total", "Descuento"
-					, 40, 20, 20, 20, 20, 20, 20, 20, 20));
+				Console.WriteLine(FormatearFilaTabla("Nombre de la película", "Costo Adulto", "Costo Menor", "Boletos Adulto", "Boletos Menores", "Recaudado Adulto", "Recaudado Menor", "Recaudado Total", "Descuento", "Ganancia Total"
+					, 40, 20, 20, 20, 20, 20, 20, 20, 20, 20));
 
-			Console.WriteLine(ResultadosPelicula(pelicula, 40, 20, 20, 20, 20, 20, 20, 20, 20));
+			Console.WriteLine(ResultadosPelicula(pelicula, 40, 20, 20, 20, 20, 20, 20, 20, 20, 20));
 		}
 
-		static string ResultadosPelicula(DatosPelicula pelicula, int charsNombre, int charsCostoAdulto, int charsCostoMenores, int charsBoletosAdulto, int charsBoletosMenores, int charsRecaudadoAdulto, int charsRecaudadoMenor, int charsRecaudadoTotal, int charsDescuento)
+		static string ResultadosPelicula(DatosPelicula pelicula, int charsNombre, int charsCostoAdulto, int charsCostoMenores, int charsBoletosAdulto, int charsBoletosMenores, int charsRecaudadoAdulto, int charsRecaudadoMenor, int charsRecaudadoTotal, int charsDescuento, int charsTotal)
 		{
 			string nombre =  pelicula.nombre;
-			string costoAdulto = "" + pelicula.costoAdulto;
-			string costoMenores = "" + pelicula.costoMenores;
+			string costoAdulto = "$" + pelicula.costoAdulto;
+			string costoMenores = "$" + pelicula.costoMenores;
 			string boletosAdulto = "" + pelicula.boletosVendidosAdulto;
 			string boletosMenores = "" + pelicula.boletosVendidosMenores;
-			string recaudadoAdulto = "" + (pelicula.costoAdulto * pelicula.boletosVendidosAdulto);
-			string recaudadoMenor = "" + (pelicula.costoMenores * pelicula.boletosVendidosMenores);
-			string recaudadoTotal = "" + ((pelicula.costoAdulto * pelicula.boletosVendidosAdulto) + (pelicula.costoMenores * pelicula.boletosVendidosMenores));
-			string descuento = "" + pelicula.dineroDescontado;
-			
-			return FormatearFilaTabla(nombre, costoAdulto, costoMenores, boletosAdulto, boletosMenores, recaudadoAdulto, recaudadoMenor, recaudadoTotal, descuento,
-				charsNombre, charsCostoAdulto, charsCostoMenores, charsBoletosAdulto, charsBoletosMenores, charsRecaudadoAdulto, charsRecaudadoMenor, charsRecaudadoTotal, charsDescuento);
+			string recaudadoAdulto = "$" + (pelicula.costoAdulto * pelicula.boletosVendidosAdulto);
+			string recaudadoMenor = "$" + (pelicula.costoMenores * pelicula.boletosVendidosMenores);
+			string recaudadoTotal = "$" + ((pelicula.costoAdulto * pelicula.boletosVendidosAdulto) + (pelicula.costoMenores * pelicula.boletosVendidosMenores));
+			string descuento = "$" + pelicula.dineroDescontado;
+			string total = "$" + ((pelicula.costoAdulto * pelicula.boletosVendidosAdulto) + (pelicula.costoMenores * pelicula.boletosVendidosMenores) - pelicula.dineroDescontado);
+
+
+			return FormatearFilaTabla(nombre, costoAdulto, costoMenores, boletosAdulto, boletosMenores, recaudadoAdulto, recaudadoMenor, recaudadoTotal, descuento, total,
+				charsNombre, charsCostoAdulto, charsCostoMenores, charsBoletosAdulto, charsBoletosMenores, charsRecaudadoAdulto, charsRecaudadoMenor, charsRecaudadoTotal, charsDescuento, charsTotal);
 		}
 
-		static string FormatearFilaTabla(string nombre, string costoAdulto, string costoMenores, string boletosAdulto, string boletosMenores, string recaudadoAdulto, string recaudadoMenor, string recaudadoTotal, string descuento, int charsNombre, int charsCostoAdulto, int charsCostoMenores, int charsBoletosAdulto, int charsBoletosMenores, int charsRecaudadoAdulto, int charsRecaudadoMenor, int charsRecaudadoTotal, int charsDescuento)
+		static string FormatearFilaTabla(string nombre, string costoAdulto, string costoMenores, string boletosAdulto, string boletosMenores, string recaudadoAdulto, string recaudadoMenor, string recaudadoTotal, string descuento, string total, int charsNombre, int charsCostoAdulto, int charsCostoMenores, int charsBoletosAdulto, int charsBoletosMenores, int charsRecaudadoAdulto, int charsRecaudadoMenor, int charsRecaudadoTotal, int charsDescuento, int charsTotal)
         {
 			string textoVacio = "                                                                                                  ";
 			nombre += textoVacio;
@@ -488,6 +489,7 @@ namespace AlgoritmosFinalOK
 			recaudadoMenor += textoVacio;
 			recaudadoTotal += textoVacio;
 			descuento += textoVacio;
+			total += textoVacio;
 
 			nombre = nombre.Substring(0, charsNombre);
 			costoAdulto = costoAdulto.Substring(0, charsCostoAdulto);
@@ -498,8 +500,9 @@ namespace AlgoritmosFinalOK
 			recaudadoMenor = recaudadoMenor.Substring(0, charsRecaudadoMenor);
 			recaudadoTotal = recaudadoTotal.Substring(0, charsRecaudadoTotal);
 			descuento = descuento.Substring(0, charsDescuento);
+			total = total.Substring(0, charsTotal);
 
-			return nombre + costoAdulto + costoMenores + boletosAdulto + boletosMenores + recaudadoAdulto + recaudadoMenor + recaudadoTotal + descuento;
+			return nombre + costoAdulto + costoMenores + boletosAdulto + boletosMenores + recaudadoAdulto + recaudadoMenor + recaudadoTotal + descuento + total;
 		}
 
 
@@ -514,7 +517,7 @@ namespace AlgoritmosFinalOK
 				if (int.TryParse(Console.ReadLine(), out resultado) && resultado >= resultadoMayorIgualQue && resultado <= resultadoMenorIgualQue)
 					continuar = false;
 				else
-					Console.WriteLine(textoError);
+					Console.WriteLine("\t" + textoError);
 			} while (continuar);
 		}
 
@@ -528,7 +531,7 @@ namespace AlgoritmosFinalOK
 				if (double.TryParse(Console.ReadLine(), out resultado) && resultado >= resultadoMayorIgualQue && resultado <= resultadoMenorIgualQue)
 					continuar = false;
 				else
-					Console.WriteLine(textoError);
+					Console.WriteLine("\t" + textoError);
 			} while (continuar);
 		}
 	}
