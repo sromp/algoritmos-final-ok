@@ -114,13 +114,13 @@ namespace AlgoritmosFinalOK
 						break;
 					case 5: // 5)	Mostrar película con menos boletos vendidos
 						break;
-					case 6: // 6)	Mostrar película con mayores recaudaciones (tras descuentos)
+					case 6: // 6)	Mostrar película con mayores recaudaciones (tras descuentos) // Uribe	(recaudaciones = boletosAdulto*costoBoletoAdulto + boletosMenor*costoBoletoMenor - descuentos) // funcion (arregloPeliculas) --> (datoPelicula)
 						break;
-					case 7: // 7)	Mostrar película con menores recaudaciones (tras descuentos)
+					case 7: // 7)	Mostrar película con menores recaudaciones (tras descuentos) // Uribe
 						break;
-					case 8: // 8)	Mostrar cantidad de boletos vendidos a menores
+					case 8: // 8)	Mostrar cantidad de boletos vendidos a menores // Uribe
 						break;
-					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos
+					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos // Uribe
 						break;
 					case 10: // 10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
 						break;
