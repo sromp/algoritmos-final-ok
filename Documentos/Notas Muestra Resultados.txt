@@ -1,7 +1,7 @@
 FASE 3. MUESTRA DE RESULTADOS
 
 Datos necesarios:
-	Datos de películas (estructura) por mes (arreglo dos dimensiones)
+	Datos de películas (estructura)
 
 Puede hacer:
 	Mostrar menu a usuario de que tipos de resultados quiere ver:
