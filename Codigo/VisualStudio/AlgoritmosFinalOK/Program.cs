@@ -18,7 +18,6 @@ namespace AlgoritmosFinalOK
 		static void Main(string[] args)
 		{
 			int n;
-			Console.WriteLine("Cantidad de películas:");
 			EscribeYLeeInt("Cantidad de películas:", "ERROR: TU CANTIDAD NO PUEDE SER NEGATIVA Y DEBE SER UN NÚMERO.", out n, 0, int.MaxValue);
 			DatosPelicula[] datosPeliculas = new DatosPelicula[n];
 
