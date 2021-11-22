@@ -132,16 +132,22 @@ namespace AlgoritmosFinalOK
 						BuscaPeliculaQueContenganTexto(tabla);
 						break;
 					case 4: // 4)	Mostrar película con más boletos vendidos // Uribe
+						EscribeDatosPelicula(PeliculaMasVendida(tabla), true);
 						break;
 					case 5: // 5)	Mostrar película con menos boletos vendidos // Uribe
+						EscribeDatosPelicula(PeliculaMenosVendida(tabla), true);
 						break;
 					case 6: // 6)	Mostrar película con mayores recaudaciones (tras descuentos) // Uribe	(recaudaciones = boletosAdulto*costoBoletoAdulto + boletosMenor*costoBoletoMenor - descuentos) // funcion (arregloPeliculas) --> (datoPelicula)
+						EscribeDatosPelicula(PeliculaMasRecaudaciones(tabla), true);
 						break;
 					case 7: // 7)	Mostrar película con menores recaudaciones (tras descuentos) // Uribe
+						EscribeDatosPelicula(PeliculaMenosRecaudaciones(tabla), true);
 						break;
 					case 8: // 8)	Mostrar cantidad de boletos vendidos a menores // Uribe
+						EscribeDatosPelicula(BoletosMenores(tabla), true);
 						break;
 					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos // Uribe
+						EscribeDatosPelicula(BoletosAdultos(tabla), true);
 						break;
 					case 10: // 10) Mostrar la cantidad de boletos vendidos
 						break;
@@ -227,6 +233,100 @@ namespace AlgoritmosFinalOK
 					EscribeDatosPelicula(peliculasEncontradas[i], i == 0);
 				}
             }
+		}
+
+		//case 4
+		static DatosPelicula PeliculaMasVendida(DatosPelicula[] lista)
+		{
+			double max = -1;
+			int total = 0;
+			DatosPelicula DatosPelicula = lista[0];
+			for (int i = 0; i < lista.Length; i++)
+			{
+				total = lista[i].boletosVendidosAdulto + lista[i].boletosVendidosMenores;
+				if (total > max)
+				{
+					max = total;
+					DatosPelicula = lista[i];
+				}
+			}
+			return DatosPelicula;
+		}
+
+		//case 5
+		static DatosPelicula PeliculaMenosVendida(DatosPelicula[] lista)
+		{
+			double min = double.MaxValue;
+			int total = 0;
+			DatosPelicula DatosPelicula = lista[0];
+			for (int i = 0; i < lista.Length; i++)
+			{
+				total = lista[i].boletosVendidosAdulto + lista[i].boletosVendidosMenores;
+				if (total < min)
+				{
+					min = total;
+					DatosPelicula = lista[i];
+				}
+			}
+			return DatosPelicula;
+		}
+
+		//case 6
+		static DatosPelicula PeliculaMasRecaudaciones(DatosPelicula[] lista)
+		{
+			double recaudaciones, max = -1;
+			DatosPelicula DatosPelicula = lista[0];
+			for (int i = 0; i < lista.Length; i++)
+			{
+				recaudaciones = (lista[i].boletosVendidosAdulto * lista[i].costoAdulto) + (lista[i].boletosVendidosMenores * lista[i].costoMenores);
+				if (recaudaciones > max)
+				{
+					max = recaudaciones;
+					DatosPelicula = lista[i];
+				}
+			}
+			return DatosPelicula;
+		}
+
+		//case 7
+		static DatosPelicula PeliculaMenosRecaudaciones(DatosPelicula[] lista)
+		{
+			double recaudaciones, min = double.MaxValue;
+			DatosPelicula DatosPelicula = lista[0];
+			for (int i = 0; i < lista.Length; i++)
+			{
+				recaudaciones = (lista[i].boletosVendidosAdulto * lista[i].costoAdulto) + (lista[i].boletosVendidosMenores * lista[i].costoMenores);
+				if (recaudaciones < min)
+				{
+					min = recaudaciones;
+					DatosPelicula = lista[i];
+				}
+			}
+			return DatosPelicula;
+		}
+
+		//case 8
+		static DatosPelicula BoletosMenores(DatosPelicula[] lista)
+		{
+			int total = 0;
+			DatosPelicula DatosPelicula = lista[0];
+			for (int i = 0; i < lista.Length; i++)
+			{
+				total = total + lista[i].boletosVendidosMenores;
+			}
+			return DatosPelicula;
+		}
+
+		//case 9
+		static DatosPelicula BoletosAdultos(DatosPelicula[] lista)
+		{
+			int total = 0;
+			DatosPelicula DatosPelicula = lista[0];
+			for (int i = 0; i < lista.Length; i++)
+			{
+				total = total + lista[i].boletosVendidosAdulto;
+			}
+			return DatosPelicula;
 		}
 
 		//case 11
