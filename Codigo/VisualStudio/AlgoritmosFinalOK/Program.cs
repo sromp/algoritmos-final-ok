@@ -17,13 +17,17 @@ namespace AlgoritmosFinalOK
 
 		static void Main(string[] args)
 		{
-			DatosPelicula[] datosPeliculas = new DatosPelicula[1]; // CAMBIAR ESTO PARA LLENAR COMO QUIERA EL USUARIO Y DEFINIR TAMAÑO
+			int n;
+			Console.WriteLine("Cantidad de películas:");
+			EscribeYLeeInt("Cantidad de películas:", "ERROR: TU CANTIDAD NO PUEDE SER NEGATIVA Y DEBE SER UN NÚMERO.", out n, 0, int.MaxValue);
+			DatosPelicula[] datosPeliculas = new DatosPelicula[n]; // CAMBIAR ESTO PARA LLENAR COMO QUIERA EL USUARIO Y DEFINIR TAMAÑO
 
 			DatosCartelera(datosPeliculas);
 
 			MuestraResultados(datosPeliculas);
 		}
 
+		// FASE 1
 		static void DatosCartelera(DatosPelicula[] lista)
 		{
 			for (int i = 0; i < lista.Length; i++)
@@ -37,11 +41,16 @@ namespace AlgoritmosFinalOK
 
 		}
 
+		// FASE 2
+
+
+		// FASE 3
 		static void MuestraResultados(DatosPelicula[] tabla)
 		{
-			string opciones = @"ESCRIBE EL NÚMERO DE LA OPCIÓN DESEADA
+			string menuReporte = @"ESCRIBE EL NÚMERO DE LA OPCIÓN DESEADA
 	1)	Mostrar ventas en de todas las peliculas como tabla
 	2)	Mostrar datos de una sóla película
+	3)	Mostrar datos de las peliculas que contengan en su título un texto
 	3)	Mostrar película con más boletos vendidos
 	4)	Mostrar película con menos boletos vendidos
 	5)	Mostrar película con mayores recaudaciones (tras descuentos)
@@ -57,34 +66,36 @@ namespace AlgoritmosFinalOK
 
 			do
 			{
-				EscribeYLeeInt(opciones, "ERROR: Esa no es una opción válida", out opcion, 1, 12);
+				EscribeYLeeInt(menuReporte, "ERROR: Esa no es una opción válida", out opcion, 1, 12);
 
 				switch (opcion)
 				{
-					case 1:
+					case 1: // 1)	Mostrar ventas en de todas las peliculas como tabla
 						break;
-					case 2:
+					case 2: // 2)	Mostrar datos de una sóla película
 						break;
-					case 3:
+					case 3: // 2)	Mostrar datos de las peliculas que contengan en su título un texto
 						break;
-					case 4:
+					case 4: // 3)	Mostrar película con más boletos vendidos
 						break;
-					case 5:
+					case 5: // 4)	Mostrar película con menos boletos vendidos
 						break;
-					case 6:
+					case 6: // 5)	Mostrar película con mayores recaudaciones (tras descuentos)
 						break;
-					case 7:
+					case 7: // 6)	Mostrar película con menores recaudaciones (tras descuentos)
 						break;
-					case 8:
+					case 8: // 7)	Mostrar cantidad de boletos vendidos a menores
 						break;
-					case 9:
+					case 9: // 8)	Mostrar cantidad de boletos vendidos a adultos
 						break;
-					case 10:
+					case 10: // 9)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
 						break;
-					case 11:
+					case 11: // 10)	Mostrar película con la mayor cantidad de dinero descontado
 						break;
-					case 12:
+					case 12: // 11)	Mostrar película con la menor cantidad de dinero descontado
 						break;
+					case 13: // 12)	Salir
+						return;
 					default:
 						break;
 				}
@@ -93,6 +104,13 @@ namespace AlgoritmosFinalOK
 
 		}
 
+		static string TablaResultados()
+        {
+
+        }
+
+
+		// UTILIDADES
 		static void EscribeYLeeInt(string textoPedir, string textoError, out int resultado, int resultadoMayorIgualQue, int resultadoMenorIgualQue)
 		{
 			bool continuar = true;
