@@ -18,3 +18,17 @@ HICE LA FUNCION DatosCartelera Y LLENÉ LOS DATOS.
 
 
         }
+
+--------------------------------------------------------------------------------
+AGREGUÉ LA CANTIDAD DE PELÍCULAS EN EL Main Y LE ASIGNÉ LA VARIABLE n
+
+
+		static void Main(string[] args)
+		{
+			int n;
+			Console.WriteLine("Cantidad de películas:");
+			EscribeYLeeInt("Cantidad de películas:", "ERROR: TU CANTIDAD NO PUEDE SER NEGATIVA Y DEBE SER UN NÚMERO.", out n, 0, int.MaxValue);
+			DatosPelicula[] datosPeliculas = new DatosPelicula[n];
+
+			DatosCartelera(datosPeliculas);
+		}
