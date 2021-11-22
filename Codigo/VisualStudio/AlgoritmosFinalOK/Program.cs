@@ -478,7 +478,7 @@ namespace AlgoritmosFinalOK
 		}
 
 		static string FormatearFilaTabla(string nombre, string costoAdulto, string costoMenores, string boletosAdulto, string boletosMenores, string recaudadoAdulto, string recaudadoMenor, string recaudadoTotal, string descuento, string total, int charsNombre, int charsCostoAdulto, int charsCostoMenores, int charsBoletosAdulto, int charsBoletosMenores, int charsRecaudadoAdulto, int charsRecaudadoMenor, int charsRecaudadoTotal, int charsDescuento, int charsTotal)
-        {
+		{
 			string textoVacio = "                                                                                                  ";
 			nombre += textoVacio;
 			costoAdulto += textoVacio;
