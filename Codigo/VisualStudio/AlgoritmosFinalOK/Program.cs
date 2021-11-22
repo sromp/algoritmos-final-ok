@@ -17,12 +17,11 @@ namespace AlgoritmosFinalOK
 
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			DatosPelicula[,] datosPeliculasPorMes;
 
+			Console.WriteLine("Hello World!");
 		}
 
-
-		// 
 		static void EscribeYLeeInt(string textoPedir, string textoError, out int resultado, int resultadoMayorIgualQue, int resultadoMenorIgualQue)
 		{
 			bool continuar = true;
