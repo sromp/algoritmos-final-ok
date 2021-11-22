@@ -16,3 +16,24 @@
 > no necesitamos repetir el preguntar datos varias veces
 
 ------------------------TEST 2
+
+>>Fase 2
+> aparece dos veces "¿cuantos clientes son?"
+> mostrar mini desglose de costos del cliente
+
+>>Fase 3
+>la tabla se imprime re raro
+                Película                Costo Adulto            Costo Menor             Boletos Adulto          Boletos Menores         Descontado
+                spiderman               $10             $8              5               4               $72.4
+                batman          $12             $9              0               5               $31.499999999999996
+                spiderman vs batman             $13             $11             4               0               $52
+                pelicula cuatro         $8              $4              4               4               $43.2
+
+> tabla de resultados también mostrar recaudado neto, por adulto y por menor
+
+> en la lista de opciones el 10) esta desalineado
+
+> se sale con 13 y deberia ser 14
+
+------------------------TEST 3
+
