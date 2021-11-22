@@ -21,9 +21,15 @@ namespace AlgoritmosFinalOK
 			EscribeYLeeInt("Cantidad de películas:", "ERROR: TU CANTIDAD NO PUEDE SER NEGATIVA Y DEBE SER UN NÚMERO.", out n, 0, int.MaxValue);
 			DatosPelicula[] datosPeliculas = new DatosPelicula[n];
 
+			Console.WriteLine("\n\n\n ==== FASE 1. LLENADO DE DATOS DE LA CARTELERA ==== ");
 			DatosCartelera(datosPeliculas);
+			Console.WriteLine("\n\n\n ==== FASE 2. LLENADO DE DATOS DE VENTAS ==== ");
 			Ventas(datosPeliculas);
+			Console.WriteLine("\n\n\n ==== FASE 3. REPORTE DE INFORMACIÓN ==== ");
 			MuestraResultados(datosPeliculas);
+
+			Console.WriteLine("\n\n\n ==== ¡HASTA LUEGO! ==== ");
+			Console.ReadLine();
 		}
 
 		// ===== FASE 1 =====
@@ -43,7 +49,7 @@ namespace AlgoritmosFinalOK
 		// ===== FASE 2 =====
 		static void Ventas(DatosPelicula[] listas)
 		{
-			int cant, peliculas;
+			int cant, peliculas, clientes, boletos;
 			double tot = 0, max = -1, min = 10000;
 			for (int i = 0; i < listas.Length; i++)
 			{
@@ -74,6 +80,18 @@ namespace AlgoritmosFinalOK
 				Console.WriteLine("La pelicula con mayor ventas fue la de: " + listas[i].nombre + "con la cantidad de " + max + "boletos");
 				tot = listas[i].boletosVendidosAdulto + listas[i].boletosVendidosMenores;
 				Console.WriteLine("El total de boletos vendidos en todas las peliculas fue de " + tot);
+
+				Console.WriteLine("¿Cuantos clientes son?");
+				clientes = int.Parse(Console.ReadLine());
+				for (int j = 0; j < clientes; j++)
+				{
+					Console.WriteLine("¿Cuantos boletos va a comprar el cliente" + j + 1 + "?");
+					boletos = int.Parse(Console.ReadLine());
+					if (boletos >= 3)
+					{
+						listas[i].dineroDescontado = listas[i].costoMenores - (listas[i].costoMenores * 0.30);
+					}
+				}
 			}
 		}
 
@@ -107,8 +125,10 @@ namespace AlgoritmosFinalOK
 						EscribeTablaPeliculas(tabla);
 						break;
 					case 2: // 2)	Mostrar datos de una sóla película // Romero
+						BuscaPeliculaNombreExacto(tabla);
 						break;
 					case 3: // 3)	Mostrar datos de las peliculas que contengan en su título un texto // Romero
+						BuscaPeliculaQueContenganTexto(tabla);
 						break;
 					case 4: // 4)	Mostrar película con más boletos vendidos // Uribe
 						break;
@@ -123,6 +143,7 @@ namespace AlgoritmosFinalOK
 					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos // Uribe
 						break;
 					case 10: // 10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta // Romero
+						CobroDescuentosGanancia(tabla);
 						break;
 					case 11: // 11)	Mostrar película con la mayor cantidad de dinero descontado // Romero
 						break;
@@ -138,15 +159,93 @@ namespace AlgoritmosFinalOK
 
 		}
 
-		// UTILIDADES FASE 3
+		// FUNCIONES FASE 3
+		//case 1
 		static void EscribeTablaPeliculas(DatosPelicula[] peliculas)
-        {
-			for(int i = 0; i < peliculas.Length; i++)
-            {
+		{
+			for (int i = 0; i < peliculas.Length; i++)
+			{
 				EscribeDatosPelicula(peliculas[i], i == 0);
 			}
+		}
+
+		//case 2
+		static void BuscaPeliculaNombreExacto(DatosPelicula[] peliculas)
+        {
+			string nombre;
+			DatosPelicula pelicula = peliculas[0]; // Asignado a cero para evitar error de valor no asignado
+			bool encontrado = false;
+
+			Console.WriteLine("\nEscribe el nombre de la película");
+			nombre = Console.ReadLine();
+
+			for(int i = 0; i < peliculas.Length; i++)
+            {
+				if(peliculas[i].nombre.ToLower().Replace(" ", "") == nombre.ToLower().Replace(" ", ""))
+                {
+					pelicula = peliculas[i];
+					encontrado = true;
+				}
+            }
+
+			if(!encontrado)
+				Console.WriteLine("No se encontró esa película");
+			else
+				EscribeDatosPelicula(pelicula, true);
         }
 
+		//case 3
+		static void BuscaPeliculaQueContenganTexto(DatosPelicula[] peliculas)
+		{
+			string texto;
+			DatosPelicula[] peliculasEncontradas = new DatosPelicula[peliculas.Length];
+			int encontrados = 0;
+			
+			Console.WriteLine("\nEscribe el texto que debe contener el nombre de la película");
+			texto = Console.ReadLine().ToLower().Replace(" ", "");
+
+			for (int i = 0; i < peliculas.Length; i++)
+			{
+				if (peliculas[i].nombre.ToLower().Replace(" ", "").Contains(texto))
+				{
+					peliculasEncontradas[encontrados] = peliculas[i];
+					encontrados++;
+				}
+			}
+
+			if (encontrados == 0)
+				Console.WriteLine("No se encontró película que contenga ese texto");
+			else
+            {
+				for(int i = 0; i < encontrados; i++)
+                {
+					EscribeDatosPelicula(peliculasEncontradas[i], i == 0);
+				}
+            }
+		}
+
+		//case 10
+		static void CobroDescuentosGanancia(DatosPelicula[] peliculas)
+        {
+			double cobroTotal = 0, descuentosTotales = 0, gananciaNeta;
+
+			for(int i = 0; i < peliculas.Length; i++)
+            {
+				cobroTotal += (peliculas[i].costoAdulto * peliculas[i].boletosVendidosAdulto) 
+					+ (peliculas[i].costoMenores * peliculas[i].boletosVendidosMenores);
+
+				descuentosTotales += peliculas[i].dineroDescontado;
+			}
+
+			gananciaNeta = cobroTotal - descuentosTotales;
+
+			Console.WriteLine("Cobro total (no tomando descuentos en cuenta): $" + cobroTotal);
+			Console.WriteLine("Dinero aplicado en descuentos: $" + descuentosTotales);
+			Console.WriteLine("Ganancia neta: $" + gananciaNeta);
+        }
+
+
+		// UTILIDADES FASE 3
 		static void EscribeDatosPelicula(DatosPelicula pelicula, bool encabezado)
         {
             if (encabezado)
