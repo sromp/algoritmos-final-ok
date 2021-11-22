@@ -174,3 +174,13 @@ case 4: // 4)	Mostrar película con más boletos vendidos // Uribe
 			}
 			return DatosPelicula;
 		}
+----------------------------------------------------------------------------------
+QUITÉ EL PRIMER WriteLine DE "Cuantos clientes?" 
+
+static void Ventas(DatosPelicula[] listas)
+		{
+			int clientes;
+			EscribeYLeeInt("¿Cuantos clientes son?", 
+				"ERROR: Debe de haber por lo menos un cliente y debe ser un número", 
+				out clientes, 1, int.MaxValue);
+			
