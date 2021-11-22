@@ -43,7 +43,7 @@ namespace AlgoritmosFinalOK
 		// ===== FASE 2 =====
 		static void Ventas(DatosPelicula[] listas)
 		{
-			int cant, peliculas;
+			int cant, peliculas, clientes, boletos;
 			double tot = 0, max = -1, min = 10000;
 			for (int i = 0; i < listas.Length; i++)
 			{
@@ -74,6 +74,18 @@ namespace AlgoritmosFinalOK
 				Console.WriteLine("La pelicula con mayor ventas fue la de: " + listas[i].nombre + "con la cantidad de " + max + "boletos");
 				tot = listas[i].boletosVendidosAdulto + listas[i].boletosVendidosMenores;
 				Console.WriteLine("El total de boletos vendidos en todas las peliculas fue de " + tot);
+
+				Console.WriteLine("¿Cuantos clientes son?");
+				clientes = int.Parse(Console.ReadLine());
+				for (int j = 0; j < clientes; j++)
+				{
+					Console.WriteLine("¿Cuantos boletos va a comprar el cliente" + j + 1 + "?");
+					boletos = int.Parse(Console.ReadLine());
+					if (boletos >= 3)
+					{
+						listas[i].dineroDescontado = listas[i].costoMenores - (listas[i].costoMenores * 0.30);
+					}
+				}
 			}
 		}
 
