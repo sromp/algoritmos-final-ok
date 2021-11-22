@@ -22,7 +22,7 @@ namespace AlgoritmosFinalOK
 			DatosPelicula[] datosPeliculas = new DatosPelicula[n];
 
 			DatosCartelera(datosPeliculas);
-
+			Ventas(datosPeliculas);
 			MuestraResultados(datosPeliculas);
 		}
 
@@ -41,7 +41,7 @@ namespace AlgoritmosFinalOK
 		}
 
 		// ===== FASE 2 =====
-		static void ventas(DatosPelicula[] listas)
+		static void Ventas(DatosPelicula[] listas)
 		{
 			int cant, peliculas;
 			double tot = 0, max = -1, min = 10000;
