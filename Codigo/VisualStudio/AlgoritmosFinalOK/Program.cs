@@ -100,19 +100,19 @@ namespace AlgoritmosFinalOK
 			do
 			{
 				EscribeYLeeInt(menuReporte, "ERROR: Esa no es una opción válida", out opcion, 1, 12);
-
+				Console.WriteLine();
 				switch (opcion)
 				{
-					case 1: // 1)	Mostrar ventas en de todas las peliculas como tabla
+					case 1: // 1)	Mostrar ventas en de todas las peliculas como tabla // Romero
 						EscribeTablaPeliculas(tabla);
 						break;
-					case 2: // 2)	Mostrar datos de una sóla película
+					case 2: // 2)	Mostrar datos de una sóla película // Romero
 						break;
-					case 3: // 3)	Mostrar datos de las peliculas que contengan en su título un texto
+					case 3: // 3)	Mostrar datos de las peliculas que contengan en su título un texto // Romero
 						break;
-					case 4: // 4)	Mostrar película con más boletos vendidos
+					case 4: // 4)	Mostrar película con más boletos vendidos // Uribe
 						break;
-					case 5: // 5)	Mostrar película con menos boletos vendidos
+					case 5: // 5)	Mostrar película con menos boletos vendidos // Uribe
 						break;
 					case 6: // 6)	Mostrar película con mayores recaudaciones (tras descuentos) // Uribe	(recaudaciones = boletosAdulto*costoBoletoAdulto + boletosMenor*costoBoletoMenor - descuentos) // funcion (arregloPeliculas) --> (datoPelicula)
 						break;
@@ -122,18 +122,18 @@ namespace AlgoritmosFinalOK
 						break;
 					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos // Uribe
 						break;
-					case 10: // 10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
+					case 10: // 10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta // Romero
 						break;
-					case 11: // 11)	Mostrar película con la mayor cantidad de dinero descontado
+					case 11: // 11)	Mostrar película con la mayor cantidad de dinero descontado // Romero
 						break;
-					case 12: // 12)	Mostrar película con la menor cantidad de dinero descontado
+					case 12: // 12)	Mostrar película con la menor cantidad de dinero descontado // Romero
 						break;
 					case 13: // 13)	Salir
 						return;
 					default:
 						break;
 				}
-
+				Console.WriteLine();
 			} while(opcion != 12);
 
 		}
