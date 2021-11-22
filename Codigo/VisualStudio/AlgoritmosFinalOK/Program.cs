@@ -38,8 +38,8 @@ namespace AlgoritmosFinalOK
 			for (int i = 0; i < lista.Length; i++)
 			{
 				lista[i].nombre = ValidacionNombrePelicula("Escribe el nombre de la película " + (i + 1) + ":", lista, i);
-				EscribeYLeeDouble("Escribe el costo boleto de adulto para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoAdulto, 0, double.MaxValue);
-				EscribeYLeeDouble("Escribe el costo boleto de menores para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoMenores, 0, double.MaxValue);
+				EscribeYLeeDouble("Escribe el costo del boleto de adulto para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoAdulto, 0, double.MaxValue);
+				EscribeYLeeDouble("Escribe el costo del boleto de menores para la película " + (i + 1) + ":", "ERROR: TU COSTO NO PUEDE SER NEGATIVO Y DEBE SER UN NÚMERO.", out lista[i].costoMenores, 0, double.MaxValue);
 				lista[i].boletosVendidosAdulto = 0;
 				lista[i].boletosVendidosMenores = 0;
 				lista[i].dineroDescontado = 0;
@@ -113,11 +113,13 @@ namespace AlgoritmosFinalOK
 				ventaMenor = listas[indicePelicula].costoMenores * boletosMenores;
 
 				if (boletosAdulto + boletosMenores >= 3 && boletosMenores >= 1)
-					descontado = ventaAdulto + (ventaMenor * 0.70);
+					descontado = ventaMenor * 0.30;
 				else
-					descontado = ventaAdulto + ventaMenor;
+					descontado = 0;
 
 				listas[indicePelicula].dineroDescontado += descontado;
+				listas[indicePelicula].boletosVendidosAdulto += boletosAdulto;
+				listas[indicePelicula].boletosVendidosMenores += boletosMenores;
 
 				Console.WriteLine("\nDESGLOSE CLIENTE: ");
 				Console.WriteLine("Boletos menores: " + boletosMenores);
@@ -515,7 +517,7 @@ namespace AlgoritmosFinalOK
 				if (int.TryParse(Console.ReadLine(), out resultado) && resultado >= resultadoMayorIgualQue && resultado <= resultadoMenorIgualQue)
 					continuar = false;
 				else
-					Console.WriteLine(textoError);
+					Console.WriteLine("\t" + textoError);
 			} while (continuar);
 		}
 
@@ -529,7 +531,7 @@ namespace AlgoritmosFinalOK
 				if (double.TryParse(Console.ReadLine(), out resultado) && resultado >= resultadoMayorIgualQue && resultado <= resultadoMenorIgualQue)
 					continuar = false;
 				else
-					Console.WriteLine(textoError);
+					Console.WriteLine("\t" + textoError);
 			} while (continuar);
 		}
 	}
