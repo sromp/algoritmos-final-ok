@@ -21,9 +21,15 @@ namespace AlgoritmosFinalOK
 			EscribeYLeeInt("Cantidad de películas:", "ERROR: TU CANTIDAD NO PUEDE SER NEGATIVA Y DEBE SER UN NÚMERO.", out n, 0, int.MaxValue);
 			DatosPelicula[] datosPeliculas = new DatosPelicula[n];
 
+			Console.WriteLine("\n\n\n ==== FASE 1. LLENADO DE DATOS DE LA CARTELERA ==== ");
 			DatosCartelera(datosPeliculas);
+			Console.WriteLine("\n\n\n ==== FASE 2. LLENADO DE DATOS DE VENTAS ==== ");
 			Ventas(datosPeliculas);
+			Console.WriteLine("\n\n\n ==== FASE 3. REPORTE DE INFORMACIÓN ==== ");
 			MuestraResultados(datosPeliculas);
+
+			Console.WriteLine("\n\n\n ==== ¡HASTA LUEGO! ==== ");
+			Console.ReadLine();
 		}
 
 		// ===== FASE 1 =====
