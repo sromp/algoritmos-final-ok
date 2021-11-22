@@ -22,8 +22,6 @@ namespace AlgoritmosFinalOK
 			DatosCartelera(datosPeliculas);
 
 			MuestraResultados(datosPeliculas);
-
-			Console.WriteLine("Hello World!");
 		}
 
 		static void DatosCartelera(DatosPelicula[] lista)
