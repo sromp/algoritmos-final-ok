@@ -108,16 +108,17 @@ namespace AlgoritmosFinalOK
 	7)	Mostrar película con menores recaudaciones (tras descuentos)
 	8)	Mostrar cantidad de boletos vendidos a menores
 	9)	Mostrar cantidad de boletos vendidos a adultos
-	10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
-	11)	Mostrar película con la mayor cantidad de dinero descontado
-	12)	Mostrar película con la menor cantidad de dinero descontado
-	13)	Salir";
+	10) Mostrar la cantidad de boletos vendidos
+	11)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta
+	12)	Mostrar película con la mayor cantidad de dinero descontado
+	13)	Mostrar película con la menor cantidad de dinero descontado
+	14)	Salir";
 
 			int opcion;
 
 			do
 			{
-				EscribeYLeeInt(menuReporte, "ERROR: Esa no es una opción válida", out opcion, 1, 12);
+				EscribeYLeeInt(menuReporte, "ERROR: Esa no es una opción válida", out opcion, 1, 14);
 				Console.WriteLine();
 				switch (opcion)
 				{
@@ -142,14 +143,18 @@ namespace AlgoritmosFinalOK
 						break;
 					case 9: // 9)	Mostrar cantidad de boletos vendidos a adultos // Uribe
 						break;
-					case 10: // 10)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta // Romero
+					case 10: // 10) Mostrar la cantidad de boletos vendidos
+						break;
+					case 11: // 11)	Mostrar cobro total (sin descuentos), descuentos totales y ganancia neta // Romero
 						CobroDescuentosGanancia(tabla);
 						break;
-					case 11: // 11)	Mostrar película con la mayor cantidad de dinero descontado // Romero
+					case 12: // 12)	Mostrar película con la mayor cantidad de dinero descontado // Romero
+						EscribeDatosPelicula(MayorDescuento(tabla), true);
 						break;
-					case 12: // 12)	Mostrar película con la menor cantidad de dinero descontado // Romero
+					case 13: // 13)	Mostrar película con la menor cantidad de dinero descontado // Romero
+						EscribeDatosPelicula(MenorDescuento(tabla), true);
 						break;
-					case 13: // 13)	Salir
+					case 14: // 14)	Salir
 						return;
 					default:
 						break;
@@ -224,7 +229,7 @@ namespace AlgoritmosFinalOK
             }
 		}
 
-		//case 10
+		//case 11
 		static void CobroDescuentosGanancia(DatosPelicula[] peliculas)
         {
 			double cobroTotal = 0, descuentosTotales = 0, gananciaNeta;
@@ -243,6 +248,33 @@ namespace AlgoritmosFinalOK
 			Console.WriteLine("Dinero aplicado en descuentos: $" + descuentosTotales);
 			Console.WriteLine("Ganancia neta: $" + gananciaNeta);
         }
+
+		//case 12
+		static DatosPelicula MayorDescuento(DatosPelicula[] peliculas)
+        {
+			DatosPelicula mayorDescuento = peliculas[0];
+
+			for (int i = 1; i < peliculas.Length; i++)
+			{
+				if (peliculas[i].dineroDescontado > mayorDescuento.dineroDescontado)
+					mayorDescuento = peliculas[i];
+			}
+			return mayorDescuento;
+		}
+
+		//case 13
+		static DatosPelicula MenorDescuento(DatosPelicula[] peliculas)
+		{
+			DatosPelicula menorDescuento = peliculas[0];
+
+			for (int i = 1; i < peliculas.Length; i++)
+			{
+				if (peliculas[i].dineroDescontado < menorDescuento.dineroDescontado)
+					menorDescuento = peliculas[i];
+			}
+			return menorDescuento;
+		}
+
 
 
 		// UTILIDADES FASE 3
